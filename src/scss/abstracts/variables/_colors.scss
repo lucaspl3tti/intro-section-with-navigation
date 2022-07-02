@@ -2,8 +2,11 @@
 $color-body: #fff;
 $color-body-dark: #000;
 
+// color variants
+$color-gray-400: #686868;
+
 // text colors
-$color-text: $color-body-dark;
+$color-text: $color-gray-400;
 $color-text-light: $color-body;
 
 $color-primary: rgba(39, 24, 126, 1);

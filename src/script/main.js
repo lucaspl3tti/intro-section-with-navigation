@@ -1,6 +1,3 @@
-function hello() {
-    const text = 'hello';
-    console.log(text);
-}
+import NavbarPlugin from './plugin/navbar.plugin';
 
-hello();
+const navbar = new NavbarPlugin('#navbar');
