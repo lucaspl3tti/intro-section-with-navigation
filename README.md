@@ -31,8 +31,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution on Frontend Mentor](https://www.frontendmentor.io/solutions/intro-section-with-dropdown-navigation--VsjMdkRyO)
+- Live Site URL: [Live Site](https://intro-section-nav-challenge.netlify.app/)
 
 ## My process
 
@@ -54,7 +54,7 @@ Didn't learn anything new, just wanted to practice the basics again.
 
 - Website - [Jan-Luca Splettstößer](https://www.spletti.info)
 - Frontend Mentor - [@lucaspl3tti](https://www.frontendmentor.io/profile/lucaspl3tti)
-- Github - [@lucaspl3tti](https://www.github.com/lucaspl3tti)
+- Github - [@lucaspl3tti](https://github.com/lucaspl3tti/)
 
 ## Installation Instructions
 1. Initialize a new repo from the [template repo](https://github.com/lucaspl3tti/basic-frontend-ide)
