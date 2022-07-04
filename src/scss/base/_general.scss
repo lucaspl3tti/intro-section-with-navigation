@@ -1,6 +1,4 @@
 /** general styling */
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
 body {
     margin: 0;
     font-family: $font-body;
@@ -83,5 +81,11 @@ img {
 
     h5 {
         font-size: $font-size-h5;
+    }
+}
+
+@include media-breakpoint-up(xxl) {
+    .container {
+        max-width: 1145px;
     }
 }

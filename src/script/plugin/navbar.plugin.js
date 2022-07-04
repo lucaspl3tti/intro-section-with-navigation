@@ -2,16 +2,13 @@ export default class NavbarPlugin {
     constructor(el) {
         this.el = document.querySelector(el);
 
-        // select navbar toggle and collapse element
+        // select navbar toggle, collapse element and close elmenent
         this.navbarToggle = this.el.querySelector('#navbarToggle');
         this.navbarToggleTarget = this.navbarToggle.getAttribute('data-navbar-toggle-target');
         this.navCollapse = this.el.querySelector(this.navbarToggleTarget);
         this.navCollapseClose = this.navCollapse.querySelector('.navbar-close');
 
-        // navbar collapse visibility
-        this.navCollapseVisible = false;
-
-        // select dropdown elements
+        // select all dropdown elements
         this.dropdowns = this.navCollapse.querySelectorAll('.navbar-item--with-dropdown');
 
         this.registerEvents();
@@ -24,43 +21,33 @@ export default class NavbarPlugin {
         this.dropdowns.forEach((dropdown) => this.registerDropdownEvents(dropdown));
     }
 
-    registerDropdownEvents(targetEl) {
-        const dropdownLink = targetEl.querySelector('.navbar-link'),
-            navbarLinkIconDown = dropdownLink.querySelector('.nav-link-icon.icon--arrow-down'),
-            navbarLinkIconUp = dropdownLink.querySelector('.nav-link-icon.icon--arrow-up'),
-            dropdownChild = targetEl.querySelector('.navbar-list-dropdown');
+    registerDropdownEvents(dropdown) {
+        const dropdownLink = dropdown.querySelector('.navbar-link');
+        const navbarLinkIconDown = dropdownLink.querySelector('.nav-link-icon.icon--arrow-down');
+        const navbarLinkIconUp = dropdownLink.querySelector('.nav-link-icon.icon--arrow-up');
+        const dropdownChild = dropdown.querySelector('.navbar-list-dropdown');
 
-        dropdownLink.addEventListener('click', () => this.onClickDropdown(targetEl, dropdownChild, navbarLinkIconDown, navbarLinkIconUp));
+        dropdownLink.addEventListener('click', () => this.onClickDropdown(dropdown, dropdownChild, navbarLinkIconDown, navbarLinkIconUp));
     }
 
     onClickNavbarToggle() {
-        this.navCollapseVisible = this.checkVisibility(this.navCollapse);
+        const navCollapseVisible = this.checkVisibility(this.navCollapse);
 
-        if (this.navCollapseVisible) return
+        if (navCollapseVisible) return;
 
-        this.navCollapse.classList.remove('hidden');
-        this.navCollapse.classList.add('navigation-collapse--collapsing');
-        setTimeout(() => {
-            this.navCollapse.classList.remove('navigation-collapse--collapsing');
-            this.navCollapse.classList.add('navigation-collapse--collapsed');
-        }, 120);
+        this.showNavCollapse();
     }
 
     onClickNavCollapseClose() {
-        this.navCollapseVisible = this.checkVisibility(this.navCollapse);
+        const navCollapseVisible = this.checkVisibility(this.navCollapse);
 
-        if (!this.navCollapseVisible) return
+        if (!navCollapseVisible) return;
 
-        this.navCollapse.classList.remove('navigation-collapse--collapsed');
-        this.navCollapse.classList.add('navigation-collapse--closing');
-        setTimeout(() => {
-            this.navCollapse.classList.remove('navigation-collapse--closing');
-            this.navCollapse.classList.add('hidden');
-        }, 350);
+        this.hideNavCollapse();
     }
 
     onClickDropdown(target, targetChild, iconDown, iconUp) {
-        let dropdownVisible = this.checkVisibility(targetChild);
+        const dropdownVisible = this.checkVisibility(targetChild);
         this.checkForOpenDropdown();
 
         if (dropdownVisible) {
@@ -68,7 +55,7 @@ export default class NavbarPlugin {
             iconUp.classList.add('hidden');
             targetChild.classList.add('hidden');
             target.classList.remove('active');
-            return
+            return;
         }
 
         iconDown.classList.add('hidden');
@@ -77,21 +64,37 @@ export default class NavbarPlugin {
         target.classList.add('active');
     }
 
-    checkVisibility(target) {
-        const containsHiddenClass = target.classList.contains('hidden')
+    showNavCollapse() {
+        this.navCollapse.classList.remove('hidden');
+        this.navCollapse.classList.add('navigation-collapse--collapsing');
+        setTimeout(() => {
+            this.navCollapse.classList.remove('navigation-collapse--collapsing');
+            this.navCollapse.classList.add('navigation-collapse--collapsed');
+        }, 120);
+    }
 
-        return containsHiddenClass ? false : true;
+    hideNavCollapse() {
+        this.navCollapse.classList.remove('navigation-collapse--collapsed');
+        this.navCollapse.classList.add('navigation-collapse--closing');
+        setTimeout(() => {
+            this.navCollapse.classList.remove('navigation-collapse--closing');
+            this.navCollapse.classList.add('hidden');
+        }, 350);
+    }
+
+    checkVisibility(target) {
+        return target.classList.contains('hidden') ? false : true;
     }
 
     checkForOpenDropdown() {
         this.dropdowns.forEach((dropdown) => {
-            const dropdownChild = dropdown.querySelector('.navbar-list-dropdown'),
-                iconDown = dropdown.querySelector('.nav-link-icon.icon--arrow-down'),
-                iconUp = dropdown.querySelector('.nav-link-icon.icon--arrow-up');
+            const dropdownChild = dropdown.querySelector('.navbar-list-dropdown');
+            const iconDown = dropdown.querySelector('.nav-link-icon.icon--arrow-down');
+            const iconUp = dropdown.querySelector('.nav-link-icon.icon--arrow-up');
 
-            let dropwdownChildVisible = this.checkVisibility(dropdownChild);
+            const dropwdownChildVisible = this.checkVisibility(dropdownChild);
 
-            if (!dropwdownChildVisible) return
+            if (!dropwdownChildVisible) return;
 
             iconDown.classList.remove('hidden');
             iconUp.classList.add('hidden');
