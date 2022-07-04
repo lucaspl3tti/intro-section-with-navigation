@@ -39,6 +39,11 @@ export default class NavbarPlugin {
         if (this.navCollapseVisible) return
 
         this.navCollapse.classList.remove('hidden');
+        this.navCollapse.classList.add('navigation-collapse--collapsing');
+        setTimeout(() => {
+            this.navCollapse.classList.remove('navigation-collapse--collapsing');
+            this.navCollapse.classList.add('navigation-collapse--collapsed');
+        }, 120);
     }
 
     onClickNavCollapseClose() {
@@ -46,7 +51,12 @@ export default class NavbarPlugin {
 
         if (!this.navCollapseVisible) return
 
-        this.navCollapse.classList.add('hidden');
+        this.navCollapse.classList.remove('navigation-collapse--collapsed');
+        this.navCollapse.classList.add('navigation-collapse--closing');
+        setTimeout(() => {
+            this.navCollapse.classList.remove('navigation-collapse--closing');
+            this.navCollapse.classList.add('hidden');
+        }, 350);
     }
 
     onClickDropdown(target, targetChild, iconDown, iconUp) {

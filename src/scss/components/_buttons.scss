@@ -1,0 +1,29 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+
+    &-primary {
+        background-color: $color-body-dark;
+        border-color: 1px solid $color-body-dark;
+
+        &:hover {
+            background-color: transparent;
+            border-color: $color-body-dark;
+            color: $color-body-dark;
+        }
+    }
+
+    &-secondary {
+        background-color: transparent;
+        border-color: $color-text;
+        color: $color-text;
+
+        &:hover {
+            background-color: transparent;
+            border-color: $color-body-dark;
+            color: $color-body-dark;
+        }
+    }
+}

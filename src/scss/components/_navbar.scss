@@ -21,6 +21,8 @@
         }
 
         .navbar-inner {
+            transform: translateX(300px);
+            transition: transform $animation-speed;
             background-color: $color-body;
             width: 64%;
             height: 100vh;
@@ -75,9 +77,26 @@
         .navbar-login-register {
             display: flex;
             flex-direction: column;
-            align-items: center;
             row-gap: 15px;
             padding-top: 45px;
+
+            .navbar-item {
+                &--login {
+                    text-align: center;
+                }
+
+                &--register {
+                    .btn {
+                        height: 42px;
+                    }
+                }
+            }
+        }
+
+        &--collapsed {
+            .navbar-inner {
+                transform: translateX(0);
+            }
         }
     }
 
@@ -117,6 +136,7 @@
                 justify-content: space-between;
                 height: auto;
                 width: auto;
+                transform: translateX(0);
                 padding: 0;
             }
 

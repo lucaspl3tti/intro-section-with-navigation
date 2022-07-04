@@ -1,0 +1,55 @@
+.main {
+    .image-wrapper {
+        margin-bottom: 48px;
+    }
+
+    .heading {
+        margin-bottom: 1rem;
+        color: $color-body-dark;
+        text-align: center;
+        font-size: 42px;
+        line-height: 42px;
+        letter-spacing: -0.5px;
+    }
+
+    .copy {
+        margin-bottom: 24px;
+    }
+
+    .btn-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn--learn-more {
+        width: 136px;
+        height: 48px;
+        font-weight: 500;
+    }
+
+    .sponsor-wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 48px;
+
+        .image-wrapper {
+            margin-bottom: 0;
+
+            svg {
+                transform: scale(0.75);
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .main {
+        display: flex;
+        align-items: center;
+        gap: 125px;
+
+        .image-wrapper {
+            order: 2;
+        }
+    }
+}
